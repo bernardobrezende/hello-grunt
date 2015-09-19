@@ -1,9 +1,10 @@
 'use strict';
 
 module.exports = function(grunt) {
-  
+
   // 1 - Configuring external plugin specific targets
   grunt.initConfig({
+    DEST_FOLDER: 'dist',
     jshint: {
       options: {
         maxparams: 5,
@@ -12,32 +13,32 @@ module.exports = function(grunt) {
       },
       files: [ 'src/**/*.js' ]
     },
-    clean: [ '.tmp', 'dist' ],
+    clean: [ '.tmp', '<%= DEST_FOLDER %>' ],
     copy: {
       html: {
         files: [
-          { src: 'index.html', dest: 'dist/' }
+          { src: 'index.html', dest: '<%= DEST_FOLDER %>/' }
         ]
       }
     },
     useminPrepare: {
       html: [ 'index.html' ],
       options: {
-        dest: 'dist'
+        dest: '<%= DEST_FOLDER %>'
       }
     },
     usemin: {
-      html: 'dist/index.html'
+      html: '<%= DEST_FOLDER %>/index.html'
     },
     filerev: {
       images: {
-        src: [ 'dist/img/**/*.{png,jpg,gif}' ],
+        src: [ '<%= DEST_FOLDER %>/img/**/*.{png,jpg,gif}' ],
       },
       styles: {
-        src: [ 'dist/**/*.css' ]
+        src: [ '<%= DEST_FOLDER %>/**/*.css' ]
       },
       scripts: {
-        src: [ 'dist/**/*.js' ]
+        src: [ '<%= DEST_FOLDER %>/**/*.js' ]
       }
     },
     imagemin: {
@@ -46,7 +47,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'img',
           src: '**/*.{png,jpg,gif}',
-          dest: 'dist/img/'
+          dest: '<%= DEST_FOLDER %>/img/'
         }]
       }
     },
@@ -59,7 +60,7 @@ module.exports = function(grunt) {
           mode: 'zip'
         },
         files: [
-          { src: 'dist/**', flatten: true }
+          { src: '<%= DEST_FOLDER %>/**', flatten: true }
         ]
       }
     }
