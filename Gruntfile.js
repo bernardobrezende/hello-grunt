@@ -2,7 +2,7 @@
 
 module.exports = function(grunt) {
   
-  // 1 - Configuração dos plugins
+  // 1 - Configuring external plugin specific targets
   grunt.initConfig({
     jshint: {
       options: {
@@ -65,8 +65,10 @@ module.exports = function(grunt) {
     }
   });
 
+  // 2 - Loading external plugins from package.json
   require('load-grunt-tasks')(grunt);
 
+  // 3 - Customizing default task pipeline
   grunt.registerTask('default', [
     'clean',
     'copy:html',
