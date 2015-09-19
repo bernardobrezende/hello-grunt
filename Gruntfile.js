@@ -7,9 +7,7 @@ module.exports = function(grunt) {
     DEST_FOLDER: 'dist',
     jshint: {
       options: {
-        maxparams: 5,
-        eqeqeq: true,
-        undef: true
+        jshintrc: true
       },
       files: [ 'src/**/*.js' ]
     },
